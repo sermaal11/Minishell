@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:18:44 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/03/05 18:40:30 by sergio           ###   ########.fr       */
+/*   Updated: 2024/03/05 19:41:01 by descamil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main(int argc, char **argv, char **envp)
 	i = 0;
 	char *tmp_variable;
 
-	ft_set_values(&mini, argc, argv, envp);
+	ft_set_values(&mini, argv, envp, argc);
 	start = 1;
 	while(1)
 	{
@@ -30,12 +30,7 @@ int main(int argc, char **argv, char **envp)
 			ft_mini_header();
 			start = 0;
 		}
-		// while (envp[i] != NULL)
-		// {
-		// 	printf("%s\n", envp[i]);
-		// 	i++;
-		// }
-		tmp_variable = ft_find_in_envp(argv[1], envp);
+		tmp_variable = ft_find_in_envp(argv[1], mini.envp);
 		printf("%s\n", tmp_variable);
 		break;
 	}

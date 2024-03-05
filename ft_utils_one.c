@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils_one.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 17:57:33 by sergio            #+#    #+#             */
-/*   Updated: 2024/03/05 19:04:04 by sergio           ###   ########.fr       */
+/*   Updated: 2024/03/05 19:41:11 by descamil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,32 @@ char	*ft_find_in_envp(char *variable, char** envp)
 	int i;
 
 	i = 0;
-	//tmp_variable = ft_strjoin(variable, "=");
+	variable = ft_strjoin(variable, "=");
 	while(envp[i++] != NULL)
 	{
-		if (ft_strnstr(envp[i], variable, ft_strlen(variable)))
+		if (ft_strnstr(envp[i], variable, ft_strlen(variable)) != NULL)
 			return (envp[i]);
+		else
+			return ("");
 	}
 	return ("");
 }
 
 void	ft_mini_header(void)
 {
-	write (1, "\t                                                      \n", 57);
-	write (1, "\t _  _   __   __ _   __   ____  _  _  ____  __    __   \n", 57);
-	write (1, "\t( \\/ ) (  ) (  ( \\ (  ) / ___)/ )( \\(  __)(  )  (  )  \n", 57);
-	write (1, "\t/ \\/ \\  )(  /    /  )(  \\___ \\) __ ( ) _) / (_/\\/ (_/\\\n", 57);
-	write (1, "\t\\_)(_/ (__) \\_)__) (__) (____/\\_)(_/(____)\\____/\\____/\n", 57);
-	write (1, "\t                                                      \n", 57);
-	write (1, "\t                                                      \n", 57);
-}
+	write (1, "\t\n", 3);
+	write (1, "\t\n", 3);
+	write (1, "\t __  __ ___ _  _ ___ ___ _  _ ___ _    _  \n", 45);
+	write (1, "\t|  \\/  |_ _| \\| |_ _/ __| || | __| |  | |\n", 44);
+	write (1, "\t| |\\/| || || .` || |\\__ \\ __ | _|| |__| |__ \n", 47);
+	write (1, "\t|_|  |_|___|_|\\_|___|___/_||_|___|____|____|\n", 47);
+	write (1, "\t\n", 3);
+	write (1, "\t\n", 3);
+	}
+
+
+   
+
+
+                                             
+

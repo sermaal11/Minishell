@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 17:01:27 by sergio            #+#    #+#             */
-/*   Updated: 2024/03/04 20:48:49 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:24:54 by descamil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ char	*ft_strjoin(char *str1, char *str2)
 	if (str2 != NULL)
 		ft_memcpy(joined_str + str1_len, str2, str2_len);
 	joined_str[str1_len + str2_len] = '\0';
-	free((char *)str1);
 	return (joined_str);
 }
