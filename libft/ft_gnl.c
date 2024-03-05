@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_gnl.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:28:59 by sergio            #+#    #+#             */
-/*   Updated: 2024/03/04 20:47:04 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/03/05 18:18:20 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 
 static char	*buffer_remainder(char *buff)
 {
-	int		buff_len;
 	int		i;
 	int		j;
 	char	*buff_rema;
 
-	buff_len = ft_strlen(buff);
 	i = 0;
 	while (buff[i] && buff[i] != '\n')
 		i++;

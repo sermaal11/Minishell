@@ -14,19 +14,20 @@
 #------------------------------------------------------------------------------#
 
 # Nombre del ejecutable a crear (sin espacios)
-NAME = minishell
+NAME =	minishell
 
 #------------------------------------------------------------------------------#
 
 # Compilador a utilizar (gcc, clang, etc)
 CC = gcc
 # Flags de compilacion (agregar los que se necesiten)
-CFLAGS = -g3 -Wall -Wextra -Werror
+CFLAGS = #-g3 -Wall -Wextra -Werror
 
 #------------------------------------------------------------------------------#
 
 # Archivos fuente (agregar los que se necesiten)
-SRCS = main.c
+SRCS =	main.c \
+		ft_utils_one.c 
 
 #------------------------------------------------------------------------------#
 

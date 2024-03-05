@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_double_quotes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 15:19:30 by descamil          #+#    #+#             */
-/*   Updated: 2024/03/05 13:21:30 by descamil         ###   ########.fr       */
+/*   Updated: 2024/03/05 17:32:35 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,16 +133,17 @@ int	ft_translate(t_data *data, int i)
 	int		j;
 	
 	k = i;
+	//(Añadir isnum)
 	while (data->str[k + data->len_var] != '\0' && data->str[k + data->len_var] != '\"' && data->str[k + data->len_var] != '\'')
 		data->len_var++;
 	tmp = malloc(data->len_var + 2);
 	if (tmp == NULL)
 		return (0);
 	j = 0;
+	//(Añadir isnum)
 	while (data->str[k + j] != '\0' && data->str[k] != '\"' && data->str[k] != '\'')
 		tmp[j++] = data->str[k++];
 	tmp[j++] = '=';
-	tmp[j] = '\0';
 	any = ft_find(data, tmp);
 	free(tmp);
 	printf(RED"ANY = %s\n"RESET, any);
@@ -152,11 +153,11 @@ int	ft_translate(t_data *data, int i)
 
 int	ft_double_quotes(t_data *data, int i, int q, int valid)
 {
-	int	prev;
+	//int	prev;
 	int	j;
 
 	j = 0;
-	prev = data->command_len;
+	//prev = 0;
 	if ((valid % 2) == 5 && data->str[i] == q && data->str[i + 1] == q)
 		return (i + 2);
 	else

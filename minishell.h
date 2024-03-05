@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:18:57 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/03/05 13:19:57 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/03/05 18:22:27 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@
 # define R 0
 # define W 1
 
+typedef struct s_mini
+{
+	// Incializamos desde el main
+	int argc;
+	char **argv;
+	char **envp;
+}	t_mini;
 
+void	ft_mini_header(void);
+void	ft_set_values(t_mini *mini, char **argv, char **envp, int argc);
+char	*ft_find_in_envp(char *variable, char** envp);
 
 #endif
