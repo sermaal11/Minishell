@@ -40,6 +40,9 @@ LIBFT_DIR = ./libft
 # Libreria a utilizar. Si se usa, descomentar la linea
 LIBFT = $(LIBFT_DIR)/libft.a
 
+COMFLAGS	= -I/Users/$(USER)/.brew/opt/readline/include
+LINKFLAGS	= -L/Users/$(USER)/.brew/opt/readline/lib -lreadline
+
 #------------------------------------------------------------------------------#
 
 # Colores para el make.
@@ -111,11 +114,11 @@ all:libft $(NAME)
 $(NAME): $(addprefix $(OBJDIR)/, $(OBJS))
 	@echo "$(GREEN)¡Objetos creados!$(RESET)"
 	@echo "$(CYAN)Compilando $(NAME)...$(RESET)"
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT)
+	$(CC) $(CFLAGS) $(LINKFLAGS) -o $@ $^ $(LIBFT)
 
 # La regla %.o compila los archivos objeto
 $(OBJDIR)/%.o : %.c | $(OBJDIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(COMFLAGS) -c $< -o $@
 
 # La regla $(OBJDIR) crea el directorio de los archivos objeto
 $(OBJDIR):
