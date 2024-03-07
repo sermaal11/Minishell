@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:18:44 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/03/05 19:41:01 by descamil         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:44:24 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int main(int argc, char **argv, char **envp)
 			start = 0;
 		}
 		tmp_variable = ft_find_in_envp(argv[1], mini.envp);
-		printf("%s\n", tmp_variable);
+		printf("tmp_variable = %s\n", tmp_variable);
+
 		break;
 	}
 	return (0);

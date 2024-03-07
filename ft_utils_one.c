@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils_one.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 17:57:33 by sergio            #+#    #+#             */
-/*   Updated: 2024/03/05 19:41:11 by descamil         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:55:10 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,15 @@ char	*ft_find_in_envp(char *variable, char** envp)
 {
 	int i;
 
-	i = 0;
+	i = -1;
 	variable = ft_strjoin(variable, "=");
-	while(envp[i++] != NULL)
+	//printf("Variable -> %s\n", variable);
+	while(envp[++i] != NULL)
 	{
 		if (ft_strnstr(envp[i], variable, ft_strlen(variable)) != NULL)
 			return (envp[i]);
-		else
-			return ("");
 	}
-	return ("");
+	return (NULL);
 }
 
 void	ft_mini_header(void)
