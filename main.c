@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:18:44 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/03/06 12:44:24 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:13:40 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int main(int argc, char **argv, char **envp)
 			ft_mini_header();
 			start = 0;
 		}
+		//Localizar e imprimir la variable pwd
+		//Permancer a la espera
 		tmp_variable = ft_find_in_envp(argv[1], mini.envp);
 		printf("tmp_variable = %s\n", tmp_variable);
 

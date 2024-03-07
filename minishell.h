@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:18:57 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/03/05 18:22:27 by sergio           ###   ########.fr       */
+/*   Updated: 2024/03/07 12:09:57 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ typedef struct s_mini
 	char **argv;
 	char **envp;
 }	t_mini;
+
+typedef struct s_argv
+{
+	char **split_argv;
+}	t_argv;
 
 void	ft_mini_header(void);
 void	ft_set_values(t_mini *mini, char **argv, char **envp, int argc);
