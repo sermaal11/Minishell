@@ -109,6 +109,7 @@ BACKGROUND_PINK = \033[105m
 # La regla all compila el ejecutable
 all:libft $(NAME)
 	@echo "$(BOLD_GREEN)(⌐■_■) ¡¡¡$(NAME) compilado con exito!!! (⌐■_■)$(RESET)"
+	clear
 
 # La regla $(NAME) compila el ejecutable con los archivos objeto creados
 $(NAME): $(addprefix $(OBJDIR)/, $(OBJS))
