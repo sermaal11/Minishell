@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:18:57 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/03/08 12:32:33 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:24:10 by descamil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,27 @@
 # define R 0
 # define W 1
 
+typedef struct s_quotes
+{
+	int		dou;
+	int		sim;
+}			t_quotes;
+
 typedef struct s_mini
 {
 	// Incializamos desde el main
-	int		start;
-	int		exit_status;
+	t_quotes	*quotes;
 	
-	char	*pwd;
-	char	*input;
+	int			start;
+	int			g_error;
+	int			exit_status;
+	
+	char		*pwd;
+	char		*input;
+	char		*code_error;
 
-	char	**envp;
-}	t_mini;
+	char		**envp;
+}				t_mini;
 
 int		ft_invalid_expr(t_mini *mini);
 
@@ -83,6 +93,8 @@ void	ft_initialize(t_mini *mini);
 
 void	ft_not_variable(void);
 
-void	ft_free_matrix(char **matrix);
+char	**ft_mini_split(t_mini *mini, char *str);
+
+// void	ft_free_matrix(char **matrix);
 
 #endif

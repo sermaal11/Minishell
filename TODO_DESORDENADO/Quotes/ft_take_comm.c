@@ -6,7 +6,7 @@
 /*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:32:55 by descamil          #+#    #+#             */
-/*   Updated: 2024/03/04 19:39:36 by descamil         ###   ########.fr       */
+/*   Updated: 2024/03/08 14:07:41 by descamil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@ int	main(int argc, char **argv, char **envp)
 	
 
 	i = 0;
+	// while (/* Array_Spliteado */)
+	// {
 	while (i != -1 && data.str[i] != '\0')
 		i = ft_valid_quotes(&data, i);
+	// }
 	if (i == -1)
 	{
 		printf(RED"		[ERROR]\n"RESET);

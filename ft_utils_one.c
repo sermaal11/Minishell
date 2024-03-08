@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils_one.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 17:57:33 by sergio            #+#    #+#             */
-/*   Updated: 2024/03/08 12:03:30 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:57:16 by descamil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,12 @@ int	ft_invalid_expr(t_mini *mini)
 void	ft_set_values(t_mini *mini, char **argv, char **envp)
 {
 	mini->start = 1;
-	mini->exit_status = 0;
-	mini->envp = envp;
 	argv[0] = argv[0];
+	mini->envp = envp;
+	mini->g_error = 0;
+	mini->exit_status = 0;
+	mini->quotes->dou = 0;
+	mini->quotes->sim = 0;
 }
 
 char	*ft_find_in_envp(char *variable, char** envp)
@@ -102,17 +105,17 @@ void	ft_not_variable(void)
 	printf(""); /* 2 */
 }
 
-void	ft_free_matrix(char **matrix)
-{
-	int	i;
+// void	ft_free_matrix(char **matrix)
+// {
+// 	int	i;
 
-	i = 0;
-	if (!matrix)
-		return ;
-	while (matrix[i])
-	{
-		free(matrix[i]);
-		matrix[i] = NULL;
-		i++;
-	}
-}
+// 	i = 0;
+// 	if (!matrix)
+// 		return ;
+// 	while (matrix[i])
+// 	{
+// 		free(matrix[i]);
+// 		matrix[i] = NULL;
+// 		i++;
+// 	}
+// }

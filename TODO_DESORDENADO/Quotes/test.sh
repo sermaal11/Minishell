@@ -3,11 +3,7 @@
 # Compilar el código C
 gcc ft_take_comm.c ft_quotes.c ft_utils_quotes.c -o a.out
 
-valid_combinations=(   "\"\"\"ls\"\"\$asd\""
-                    "\"\"\"echo 'Hello'\"\"\$variable\""
-                    "\"\"\"command1\"\" \$variable \"\"command2\"\""
-                    "\"\"\"command1\"\"\$variable\"\"command2\"\""
-                    "\"\"\"command with spaces\"\"\$variable\"")
+valid_combinations=("\"\"\"ls\"\"\$asd\"")
 
 
 # echo "Probando combinaciones válidas:"
