@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:18:57 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/03/07 19:20:09 by descamil         ###   ########.fr       */
+/*   Updated: 2024/03/08 12:32:33 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-
 
 // Regular
 
@@ -79,5 +78,11 @@ void	ft_set_values(t_mini *mini, char** argv, char **envp);
 
 char	*ft_find_in_envp(char *variable, char** envp);
 char	*ft_remove_varible(char *dst, char *var_content);
+
+void	ft_initialize(t_mini *mini);
+
+void	ft_not_variable(void);
+
+void	ft_free_matrix(char **matrix);
 
 #endif
