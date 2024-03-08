@@ -6,7 +6,7 @@
 /*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:18:44 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/03/08 16:30:04 by descamil         ###   ########.fr       */
+/*   Updated: 2024/03/08 19:46:42 by descamil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int main(int argc, char **argv, char **envp)
 
 	char	**input_matrix;
 	// int		i;
-		
+	
+	input_matrix = NULL;
 	if (argc != 1)
 		printf("Error: Numero de argumentos invalidos.\n");
 	else
@@ -38,9 +39,9 @@ int main(int argc, char **argv, char **envp)
 			{
 				add_history(mini.input);
 				input_matrix = ft_mini_split(&mini, mini.input);
-				// ! A tener en cuenta echo "hola | que tal"
-				// ! echo "hola"que"tal"
-				// ! un argumento es todo hasta el sguiente espacio no entrecomillado
+				// A tener en cuenta echo "hola | que tal"
+				// echo "hola"que"tal"
+				// un argumento es todo hasta el sguiente espacio no entrecomillado
 				
 				// if (ft_strncmp(mini.input, "exit", ft_strlen("exit")) == 0)
 				// {
@@ -50,6 +51,10 @@ int main(int argc, char **argv, char **envp)
 			}
 			if (mini.input != NULL)
 				free(mini.input);
+			int	i = 0;
+			while (input_matrix[i] != NULL)
+				free(input_matrix[i++]);
+			free(input_matrix);
 			// break;
 		}
 		

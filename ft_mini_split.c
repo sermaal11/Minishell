@@ -6,7 +6,7 @@
 /*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:08:20 by descamil          #+#    #+#             */
-/*   Updated: 2024/03/08 18:02:45 by descamil         ###   ########.fr       */
+/*   Updated: 2024/03/08 19:46:13 by descamil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,17 @@ int	ft_all_space(t_mini *mini, char *str, int i)
 
 void ft_count_quotes(t_mini *mini, char c)
 {
-	if (c == '\"' && (mini->quotes->sim % 2 == 1))
+	if (c == '\"')
 	{
 		mini->quotes->dou += 1;
 		if (mini->quotes->dou % 2 == 0)
 			mini->quotes->dou = 0;
-		printf("%d\n", mini->quotes->dou);
 	}
-	if (c == '\'' && (mini->quotes->dou % 2 == 1))
+	if (c == '\'')
 	{
 		mini->quotes->sim += 1;
 		if (mini->quotes->sim % 2 == 0)
 			mini->quotes->sim = 0;
-		printf("%d\n", mini->quotes->sim);
 	}
 }
 
@@ -85,27 +83,70 @@ static int	count_words(t_mini *mini, char *str)
 	return (words);
 }
 
-// static size_t	get_inti_len(const char *str, char value)
-// {
+char **ft_fill_array(t_mini *mini, char *str, char **array_to_fill, int words) //t_mini *mini,
+{
+	int	k;
+	int	j;
+	int	size;
+	int	i;
+	int	l;
 
-// }
+	i = 0;
+	k = 0;
+	j = 0;
+	size = 0;
+	while (k < words)
+	{
+		while (str[j] != '\0')
+		{
+			ft_count_quotes(mini, str[j]);
+			printf("D = %d\n", mini->quotes->dou);
+			printf("S = %d\n", mini->quotes->sim);
+			if (str[j] == '|' && mini->quotes->dou == 0 && mini->quotes->sim == 0)
+			{	
+				j++;
+				break;
+			}
+			size++;
+			j++;
+		}
+		array_to_fill[k] = (char *)malloc((size + 1) * sizeof(char));
+		l = 0;
+		printf("Size0 = %d\n", size);
+		while (size > 0)
+		{
+			array_to_fill[k][l] = str[i];
+			l++;
+			i++;
+			size--;
+		}
+		array_to_fill[k][l] = '\0';
+		i++;
+		printf("Size1 = %d\n", size);
+		array_to_fill[k][i] = '\0';
+		printf(GREEN"ARRAY --> %s\n"RESET, array_to_fill[k]);
+		k++;
+		// exit(0);
+	}
+	return (array_to_fill);
+}
 
 // static char	**fill_array(const char *str, char value, char **array, size_t word)
 // {
 	
 // }
 
-// static void	free_memory(size_t row, char **array)
+// static void	free_memory(size_t k, char **array)
 // {
-// 	while (row--)
-// 		free(array[row]);
+// 	while (k--)
+// 		free(array[k]);
 // 	free(array);
 // }
 
 char	**ft_mini_split(t_mini *mini, char *str)
 {
-	int	words;
-	char	**array;
+	char	**filled_array;
+	int		words;
 
 	if (!str)
 		return (NULL);
@@ -121,10 +162,9 @@ char	**ft_mini_split(t_mini *mini, char *str)
 		return (NULL);
 	}	
 	printf("Words --> %d\n", words);
-	return (NULL);
-	array = (char **)malloc(sizeof(char *) * (words + 1));
-	// if (!array)
-	// 	return (NULL);
-	// array = fill_array(str, value, array, word);
-	// return (array);
+	filled_array = (char **)malloc(sizeof(char *) * (words + 1));
+	if (!filled_array)
+		return (NULL);
+	filled_array = ft_fill_array(mini, str, filled_array, words); //mini,
+	return (filled_array);
 }
