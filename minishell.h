@@ -6,7 +6,7 @@
 /*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:18:57 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/03/08 16:24:10 by descamil         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:17:51 by descamil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ typedef struct s_quotes
 {
 	int		dou;
 	int		sim;
+	int		pipe;
+	int		other;
+	int		error;
+	int		words;
+	int		o_space;
 }			t_quotes;
 
 typedef struct s_mini
@@ -84,17 +89,15 @@ typedef struct s_mini
 int		ft_invalid_expr(t_mini *mini);
 
 void	ft_mini_header(void);
+void	ft_not_variable(void);
+void	ft_initialize(t_mini *mini);
+// void	ft_free_matrix(char **matrix);
 void	ft_set_values(t_mini *mini, char** argv, char **envp);
 
 char	*ft_find_in_envp(char *variable, char** envp);
 char	*ft_remove_varible(char *dst, char *var_content);
 
-void	ft_initialize(t_mini *mini);
-
-void	ft_not_variable(void);
-
 char	**ft_mini_split(t_mini *mini, char *str);
-
-// void	ft_free_matrix(char **matrix);
+char	**mini_split(t_mini *mini, char *str);
 
 #endif

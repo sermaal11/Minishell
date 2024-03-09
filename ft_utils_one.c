@@ -6,7 +6,7 @@
 /*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 17:57:33 by sergio            #+#    #+#             */
-/*   Updated: 2024/03/08 16:57:16 by descamil         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:14:03 by descamil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	ft_mini_header(void)
 {
 	printf ("\t\n");
 	printf ("\t\n");
-	printf (RED"\t __  __ ___ _  _ ___ ___ _  _ ___ _    _  \n"RESET);
-	printf (RED"\t|  \\/  |_ _| \\| |_ _/ __| || | __| |  | |\n"RESET);
-	printf (YELLOW"\t| |\\/| || || .` || |\\__ \\ __ | _|| |__| |__ \n"RESET);
-	printf (PURPLE"\t|_|  |_|___|_|\\_|___|___/_||_|___|____|____|\n"RESET);
+	printf ("\t __  __ ___ _  _ ___ ___ _  _ ___ _    _  \n");
+	printf ("\t|  \\/  |_ _| \\| |_ _/ __| || | __| |  | |\n");
+	printf ("\t| |\\/| || || .` || |\\__ \\ __ | _|| |__| |__ \n");
+	printf ("\t|_|  |_|___|_|\\_|___|___/_||_|___|____|____|\n");
 	printf ("\t\n");
 	printf ("\t\n\n");
 }
@@ -61,13 +61,12 @@ int	ft_invalid_expr(t_mini *mini)
 
 void	ft_set_values(t_mini *mini, char **argv, char **envp)
 {
+	mini->pwd = NULL;
 	mini->start = 1;
 	argv[0] = argv[0];
 	mini->envp = envp;
 	mini->g_error = 0;
 	mini->exit_status = 0;
-	mini->quotes->dou = 0;
-	mini->quotes->sim = 0;
 }
 
 char	*ft_find_in_envp(char *variable, char** envp)

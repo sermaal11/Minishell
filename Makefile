@@ -27,6 +27,7 @@ CFLAGS = -g3 -Wall -Wextra -Werror
 
 # Archivos fuente (agregar los que se necesiten)
 SRCS =	main.c \
+		mini_split.c \
 		ft_utils_one.c \
 		ft_mini_split.c \
 
