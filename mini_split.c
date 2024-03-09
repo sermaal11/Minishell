@@ -6,7 +6,7 @@
 /*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:26:43 by descamil          #+#    #+#             */
-/*   Updated: 2024/03/09 18:41:01 by descamil         ###   ########.fr       */
+/*   Updated: 2024/03/09 19:08:11 by descamil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,21 @@ void	count_quotes(t_mini *mini, char c)
 		mini->quotes->dou = 0;
 }
 
+int	count_quotes_size(t_mini *mini, char c)
+{
+	if (c == '\'')
+		mini->quotes->sim += 1;
+	if (mini->quotes->sim == 2)
+		mini->quotes->sim = 0;
+	if (c == '\"')
+		mini->quotes->dou += 1;
+	if (mini->quotes->dou == 2)
+		mini->quotes->dou = 0;
+	if (c == '\'' || c == '\"')
+		return (1);
+	return (0);
+}
+
 void	count_others(t_mini *mini, char c)
 {
 	if (c != ' ' && c != '|')
@@ -34,6 +49,21 @@ void	count_others(t_mini *mini, char c)
 	}
 	else if (c == ' ')
 		mini->quotes->o_space = 1;
+}
+
+int	count_others_size(t_mini *mini, char c)
+{
+	if (c != ' ' && c != '|')
+	{
+		mini->quotes->other = 1;
+		mini->quotes->pipe = 0;
+		mini->quotes->o_space = 0;
+	}
+	else if (c == ' ')
+		mini->quotes->o_space = 1;
+	if (c != '|')
+		return (1);
+	return (0);
 }
 
 void	pipes_error(t_mini *mini, char c)
@@ -89,6 +119,15 @@ void	count_pipes(t_mini *mini, char *str, int i)
 	}
 }
 
+// int	count_pipes_size(t_mini *mini, char *str, int i)
+// {
+// 	if (str[i] == '|' && mini->quotes->dou == 0 && mini->quotes->sim == 0)
+// 	{
+// 		mini->quotes->final = i - 1; /* EJ = "cat |" I == 5 FINAL == 4 */
+// 		return (0);
+// 	}
+// }
+
 int	count_words(t_mini *mini, char *str)
 {
 	int i;
@@ -127,12 +166,30 @@ int	ft_words_errors(t_mini *mini)
 
 // char	**fill_array(t_mini *mini, char *str, char **array, int words)
 // {
+// 	int	i;
+// 	int	j;
+// 	int	k;
+// 	int	l;
+// 	int	size;
+
+// 	i = -1;
+// 	j = 0;
+// 	k = 0;
+// 	l = 0;
+// 	size = 0;
+// 	while (str[++i] != '\0')
+// 	{
+// 		size += count_quotes_size(mini, str[i]);
+// 		size += count_others_size(mini, str[i]);
+// 		size += count_pipes_size(mini, str, i);
+		
+// 	}
 // 	return (NULL);
 // }
 
 char	**mini_split(t_mini *mini, char *str)
 {
-	char	**array;
+	// char	**array;
 	int		words;
 	
 	if (str == NULL)
@@ -142,9 +199,10 @@ char	**mini_split(t_mini *mini, char *str)
 	if (ft_words_errors(mini) == -1)
 		return (NULL);
 	printf(GREEN"Words --> "RESET YELLOW"%d\n"RESET, words);
-	array = (char **)malloc((words + 1) * sizeof(char *));
-	if (array == NULL)
-		return (NULL);
+	// array = (char **)malloc((words + 1) * sizeof(char *));
+	// if (array == NULL)
+	// 	return (NULL);
 	// array = fill_array(mini, str, array, words);
-	return (array);
+	// return (array);
+	return (NULL);
 }
