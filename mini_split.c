@@ -6,7 +6,7 @@
 /*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:26:43 by descamil          #+#    #+#             */
-/*   Updated: 2024/03/09 17:55:42 by descamil         ###   ########.fr       */
+/*   Updated: 2024/03/09 18:41:01 by descamil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,32 @@ void	count_others(t_mini *mini, char c)
 
 void	pipes_error(t_mini *mini, char c)
 {
-	printf(RED"STR[i + 1] --> [%c]\n", c);
-	printf(PURPLE"OTHER --> [%d]\n", mini->quotes->other);
+	printf(RED"STR[i + 1] --> [%c]\n"RESET, c);
+	printf(PURPLE"OTHER --> [%d]\n"RESET, mini->quotes->other);
 	if (c == '|' && mini->quotes->other == 0 ) /* Error "||" */
 	{
 		mini->quotes->error = 1;
 		printf(ORANGE"ERROR = [%d]\n"RESET, mini->quotes->error);
 		mini->code_error = "||";
-		return ;
 	}
 	else if (mini->quotes->pipe == 2) /* Error "|   |" */
 	{
 		mini->quotes->error = 1;
 		mini->code_error = "|";
 	}
+}
+
+int	ft_nothing(char *str, int i)
+{
+	if (str[i] == '\0')
+		return (1);
+	while (str[i] != '\0')
+	{
+		if (str[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 void	count_pipes(t_mini *mini, char *str, int i)
@@ -66,11 +78,13 @@ void	count_pipes(t_mini *mini, char *str, int i)
 			mini->quotes->words += 1;
 			mini->quotes->other = 0;
 		}
-		if (mini->quotes->o_space == 1 && str[i + 1] != '|')
+		if (i == 0 || str[i + 1] == '\0' || ft_nothing(str, i + 1) == 1
+			|| (mini->quotes->o_space == 1 && str[i + 1] != '|'))
 		{
 			mini->quotes->o_space = 0;
 			mini->quotes->error = 1;
-			mini->code_error = "|";
+			if (mini->code_error == NULL)
+				mini->code_error = "|";
 		}
 	}
 }
@@ -93,39 +107,44 @@ int	count_words(t_mini *mini, char *str)
 	return (mini->quotes->words);
 }
 
-// int	ft_words_errors(t_mini *mini)
+int	ft_words_errors(t_mini *mini)
+{
+	if (mini->quotes->error == 1)
+	{
+		mini->g_error = 258;
+		printf("mini: syntax error near unexpected token");
+		printf("`%s'\n", mini->code_error);
+		return (-1);
+	}
+	else if (mini->quotes->error == 2 || mini->quotes->dou == 1
+			|| mini->quotes->dou == 1)
+	{
+		printf("Wait to close\n");
+		return (-1);
+	}
+	return (0);
+}
+
+// char	**fill_array(t_mini *mini, char *str, char **array, int words)
 // {
-	
-// 	return (0);
+// 	return (NULL);
 // }
 
 char	**mini_split(t_mini *mini, char *str)
 {
-	// char	**array;
+	char	**array;
 	int		words;
 	
 	if (str == NULL)
 		return (NULL);
 	words = count_words(mini, str);
-	printf(GREEN"Words --> "RESET YELLOW"%d\n"RESET, words);
 	printf("%d\n", mini->quotes->error);
-	if (mini->quotes->error == 1)
-	{
-		mini->g_error = 258;
-		printf("mini: syntax error near unexpected token `%s'\n", mini->code_error);
+	if (ft_words_errors(mini) == -1)
 		return (NULL);
-	}
-	else if (mini->quotes->error == 2 || mini->quotes->dou == 1 || mini->quotes->dou == 1)
-	{
-		printf("Wait to close\n");
+	printf(GREEN"Words --> "RESET YELLOW"%d\n"RESET, words);
+	array = (char **)malloc((words + 1) * sizeof(char *));
+	if (array == NULL)
 		return (NULL);
-	}
-	return (NULL);
-}
-	// if (ft_words_errors(mini) == -1)
-	// 	return (NULL);
-	// array = (char **)malloc((words + 1) * sizeof(char *));
-	// if (array == NULL)
-	// 	return (NULL);
 	// array = fill_array(mini, str, array, words);
-	// return (array);
+	return (array);
+}

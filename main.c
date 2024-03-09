@@ -6,7 +6,7 @@
 /*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:18:44 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/03/09 17:48:24 by descamil         ###   ########.fr       */
+/*   Updated: 2024/03/09 18:24:42 by descamil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int main(int argc, char **argv, char **envp)
 				// 	free(mini.input);
 				// }
 				j = 0;
+				mini.code_error = 0;
 				if (input_matrix != NULL)
 				{
 					while (input_matrix[j] != NULL)
