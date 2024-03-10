@@ -6,7 +6,7 @@
 /*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:18:44 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/03/09 18:24:42 by descamil         ###   ########.fr       */
+/*   Updated: 2024/03/10 09:53:18 by descamil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int main(int argc, char **argv, char **envp)
 		printf("Error: Numero de argumentos invalidos.\n");
 	else
 	{
-		printf("Aquí\n");
 		ft_set_values(&mini, argv ,envp);
 		i = 0;
 		while(i++ < 10)

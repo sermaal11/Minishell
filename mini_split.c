@@ -6,11 +6,24 @@
 /*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:26:43 by descamil          #+#    #+#             */
-/*   Updated: 2024/03/09 19:08:11 by descamil         ###   ########.fr       */
+/*   Updated: 2024/03/10 10:24:07 by descamil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	ft_nothing(char *str, int i)
+{
+	if (str[i] == '\0')
+		return (1);
+	while (str[i] != '\0')
+	{
+		if (str[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 void	count_quotes(t_mini *mini, char c)
 {
@@ -66,54 +79,46 @@ int	count_others_size(t_mini *mini, char c)
 	return (0);
 }
 
-void	pipes_error(t_mini *mini, char c)
+void	pipes_error(t_mini *mini, char *str, int i)
 {
-	printf(RED"STR[i + 1] --> [%c]\n"RESET, c);
-	printf(PURPLE"OTHER --> [%d]\n"RESET, mini->quotes->other);
-	if (c == '|' && mini->quotes->other == 0 ) /* Error "||" */
+	if (str[i + 1] == '|' && mini->quotes->other == 0 ) /* Error "||" */
 	{
 		mini->quotes->error = 1;
-		printf(ORANGE"ERROR = [%d]\n"RESET, mini->quotes->error);
 		mini->code_error = "||";
 	}
 	else if (mini->quotes->pipe == 2) /* Error "|   |" */
 	{
 		mini->quotes->error = 1;
 		mini->code_error = "|";
+		if (str[i - 1] == '|' && str[i] == '|' && ft_nothing(str, i + 1) == 1)
+			mini->code_error = "||";
+		else if ((str[i - 1] == '|' && str[i] == '|') && ft_nothing(str, i + 1) == 0)
+		{
+			mini->quotes->error = 3;
+			mini->code_error = NULL;
+		}
 	}
-}
-
-int	ft_nothing(char *str, int i)
-{
-	if (str[i] == '\0')
-		return (1);
-	while (str[i] != '\0')
-	{
-		if (str[i] != ' ')
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
 void	count_pipes(t_mini *mini, char *str, int i)
 {
 	if (str[i] == '|' && mini->quotes->dou == 0 && mini->quotes->sim == 0)
 	{
-		printf(BLUE"BLUE\n"RESET);
 		mini->quotes->pipe += 1;
-		pipes_error(mini, str[i + 1]);
+		pipes_error(mini, str, i);
 		if (mini->quotes->other == 1)
 		{
 			mini->quotes->words += 1;
 			mini->quotes->other = 0;
+			mini->quotes->o_space = 0;
 		}
 		if (i == 0 || str[i + 1] == '\0' || ft_nothing(str, i + 1) == 1
 			|| (mini->quotes->o_space == 1 && str[i + 1] != '|'))
 		{
 			mini->quotes->o_space = 0;
-			mini->quotes->error = 1;
-			if (mini->code_error == NULL)
+			if (mini->quotes->error == 0)
+				mini->quotes->error = 1;
+			if (mini->code_error == NULL && mini->quotes->error != 3)
 				mini->code_error = "|";
 		}
 	}
@@ -158,7 +163,12 @@ int	ft_words_errors(t_mini *mini)
 	else if (mini->quotes->error == 2 || mini->quotes->dou == 1
 			|| mini->quotes->dou == 1)
 	{
-		printf("Wait to close\n");
+		printf("Wait to close quotes\n");
+		return (-1);
+	}
+	else if (mini->quotes->error == 3)
+	{
+		printf ("Error double pipes\n");
 		return (-1);
 	}
 	return (0);
