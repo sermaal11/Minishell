@@ -6,7 +6,7 @@
 /*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:18:44 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/03/10 09:53:18 by descamil         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:03:33 by descamil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ int main(int argc, char **argv, char **envp)
 				mini.quotes->dou = 0;
 				mini.quotes->sim = 0;
 				mini.quotes->pipe = 0;
+				mini.quotes->stop = 0;
 				mini.quotes->other = 0;
 				mini.quotes->error = 0;
 				mini.quotes->words = 1;
+				mini.quotes->slash = 0;
 				add_history(mini.input);
-				input_matrix = mini_split(&mini, mini.input);
+				input_matrix = ft_mini_split(&mini, mini.input);
 				// if (input_matrix == NULL)
 				// {
 				// 	if (mini.input != NULL)

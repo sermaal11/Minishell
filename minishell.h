@@ -6,7 +6,7 @@
 /*   By: descamil <descamil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:18:57 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/03/09 17:17:51 by descamil         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:20:37 by descamil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,20 @@
 # define R 0
 # define W 1
 
+# define FALSE 0
+# define TRUE 1
+
 typedef struct s_quotes
 {
 	int		dou;
 	int		sim;
 	int		pipe;
+	int		stop;
+	int		slash;
 	int		other;
 	int		error;
 	int		words;
+	int		final;
 	int		o_space;
 }			t_quotes;
 
@@ -97,7 +103,23 @@ void	ft_set_values(t_mini *mini, char** argv, char **envp);
 char	*ft_find_in_envp(char *variable, char** envp);
 char	*ft_remove_varible(char *dst, char *var_content);
 
+
+/* MINI_SPLIT */
+
 char	**ft_mini_split(t_mini *mini, char *str);
-char	**mini_split(t_mini *mini, char *str);
+char	**fill_array(t_mini *mini, char *str, char **array);
+
+int		ft_nothing(char *str, int i);
+int		ft_count_words(t_mini *mini, char *str);
+int		ft_count_others_size(t_mini *mini, char c);
+int		ft_count_quotes_size(t_mini *mini, char *str, int i);
+
+void	ft_count_others(t_mini *mini, char c);
+void	ft_count_pipes(t_mini *mini, char *str, int i);
+void	ft_count_quotes(t_mini *mini, char c);
+
+int		ft_words_errors(t_mini *mini);
+
+void	ft_pipes_error(t_mini *mini, char *str, int i);
 
 #endif
